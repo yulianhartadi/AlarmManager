@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:autofillHints="@string/alarm_time"
             android:text="@string/alarm_time"
             android:textStyle="normal" />
 
@@ -63,9 +64,10 @@
         android:id="@+id/edt_one_time_alarm_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:hint="@string/alarm_message" />
+        android:autofillHints="@string/one_time_alarm"
+        android:hint="@string/alarm_message"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btn_set_one_time_alarm"
@@ -92,6 +94,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:autofillHints="@string/repeating_alarm"
             android:text="@string/btn_dots" />
 
         <TextView
@@ -107,7 +110,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:hint="@string/alarm_message" />
+        android:autofillHints="@string/alarm_message"
+        android:hint="@string/alarm_message"
+        android:inputType="text" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,12 +121,14 @@
 
         <Button
             android:id="@+id/btn_set_repeating_alarm"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/set_repeating_alarm" />
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
