@@ -1,12 +1,14 @@
 package net.kampungweb.alarmmanager;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_one_time_alarm_date) {
-            Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
 
             //Add instance Calendar Picker Dialog
             final Calendar currentDate = Calendar.getInstance();
@@ -82,6 +84,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (view.getId() == R.id.btn_one_time_alarm_time) {
             Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+
+            //Add instance Calendar Time Picker Dialog
+            final Calendar currentTime = Calendar.getInstance();
+            new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                    calOneTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    calOneTimeTime.set(Calendar.MINUTE, minute);
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                    tvOneTimeAlarmTime.setText(timeFormat.format(calOneTimeTime.getTime()));
+                }
+            }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), true).show();
+
         } else if (view.getId() == R.id.btn_set_one_time_alarm) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
