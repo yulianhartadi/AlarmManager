@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                     calOneTimeDate.set(year, monthOfYear, dayOfMonth);
                     tvOneTimeAlarmDate.setText(dateFormat.format(calOneTimeDate.getTime()));
                 }
