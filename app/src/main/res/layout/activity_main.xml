@@ -51,6 +51,7 @@
             android:text="@string/btn_dots" />
 
         <TextView
+            android:id="@+id/tv_one_time_alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
@@ -63,9 +64,9 @@
         android:id="@+id/edt_one_time_alarm_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:hint="@string/alarm_message" />
+        android:hint="@string/alarm_message"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btn_set_one_time_alarm"
@@ -104,6 +105,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/edt_repeating_alarm_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
@@ -122,6 +124,7 @@
             android:text="@string/set_repeating_alarm" />
 
         <Button
+            android:id="@+id/btn_cancel_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
