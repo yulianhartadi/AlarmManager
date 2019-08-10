@@ -89,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //Add instance Calendar Time Picker Dialog
             final Calendar currentTime = Calendar.getInstance();
-            int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
-            int currentMinute = currentTime.get(Calendar.MINUTE);
-
             timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
-                public void onTimeSet(TimePicker timePicker, int i, int i1) {
-
+                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm");
+                        currentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        currentTime.set(Calendar.MINUTE, minute);
+                        btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
                 }
-            },0,0, false);
+            }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), false);
             timePickerDialog.show();
 
 
