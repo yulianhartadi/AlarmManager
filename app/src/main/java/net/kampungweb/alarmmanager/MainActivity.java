@@ -92,10 +92,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm");
-                        currentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        currentTime.set(Calendar.MINUTE, minute);
-                        btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+
+                    currentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    currentTime.set(Calendar.MINUTE, minute);
+                    btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                    //tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+
                 }
             }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), false);
             timePickerDialog.show();
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             String oneTimeTime = timeFormat.format((calOneTimeTime.getTime()));
-            String oneTimeMessage  = edtOneTimealarmMessage.getText().toString();
+            String oneTimeMessage = edtOneTimealarmMessage.getText().toString();
 
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();

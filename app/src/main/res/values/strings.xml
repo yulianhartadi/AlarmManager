@@ -9,4 +9,5 @@
     <string name="repeating_alarm">Repeating Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
     <string name="cancel_alarm">Cancel Alarm</string>
+    <string name="alarm_time_one_time">Waktu Alarm</string>
 </resources>
