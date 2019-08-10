@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSetRepeatingAlarm;
     Button btnCancelAlarm;
 
+    TimePickerDialog timePickerDialog;
+
     private Calendar calOneTimeDate;
     private Calendar calOneTimeTime;
     private Calendar calRepeatTime;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSetOneTimeAlarm.setOnClickListener(this);
         btnRepeatingAlarmTime.setOnClickListener(this);
         btnSetRepeatingAlarm.setOnClickListener(this);
-        btnCancelAlarm.setOnClickListener(this);
+//        btnCancelAlarm.setOnClickListener(this);
 
         calOneTimeDate = Calendar.getInstance();
         calOneTimeTime = Calendar.getInstance();
@@ -87,23 +89,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //Add instance Calendar Time Picker Dialog
             final Calendar currentTime = Calendar.getInstance();
-            new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = currentTime.get(Calendar.MINUTE);
+
+            timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
-                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    calOneTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calOneTimeTime.set(Calendar.MINUTE, minute);
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-                    tvOneTimeAlarmTime.setText(timeFormat.format(calOneTimeTime.getTime()));
+                public void onTimeSet(TimePicker timePicker, int i, int i1) {
+
                 }
-            }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), true).show();
+            },0,0, false);
+            timePickerDialog.show();
+
 
         } else if (view.getId() == R.id.btn_set_one_time_alarm) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            String oneTimeTime = timeFormat.format((calOneTimeTime.getTime()));
+            String oneTimeMessage  = edtOneTimealarmMessage.getText().toString();
+
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.btn_set_repeating_alarm) {
-            Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
-        } else if (view.getId() == R.id.btn_cancel_alarm) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
         }
     }
