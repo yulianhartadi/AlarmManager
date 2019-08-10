@@ -12,6 +12,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnOneTimeAlarmDate;
     TextView tvOneTimeAlarmDate;
     Button btnOneTimeAlarmTime;
-    TextView tvOneTimeAlarmTime;
+    AppCompatTextView tvOneTimeAlarmTime;
     EditText edtOneTimealarmMessage;
     Button btnSetOneTimeAlarm;
 
@@ -92,12 +93,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
                     currentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     currentTime.set(Calendar.MINUTE, minute);
-                    btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
-                    //tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                    //btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                    if (tvOneTimeAlarmTime != null) {
+                        tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                    } else if (true){
+                        Toast.makeText(getApplicationContext(),"how to fix it", Toast.LENGTH_LONG).show();
+                        tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.toString().toCharArray()));
+                    }
+
 
                 }
             }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), false);
