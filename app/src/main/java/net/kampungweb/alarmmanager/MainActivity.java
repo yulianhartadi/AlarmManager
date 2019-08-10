@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnOneTimeAlarmDate = findViewById(R.id.btn_one_time_alarm_date);
         tvOneTimeAlarmDate = findViewById(R.id.tv_one_time_alarm_date);
         btnOneTimeAlarmTime = findViewById(R.id.btn_one_time_alarm_time);
-        tvOneTimeAlarmTime = findViewById(R.id.tv_one_time_alarm_time);
+       // tvOneTimeAlarmTime = findViewById(R.id.tv_one_time_alarm_time);
         edtOneTimealarmMessage = findViewById(R.id.edt_one_time_alarm_message);
         btnSetOneTimeAlarm = findViewById(R.id.btn_set_one_time_alarm);
 
         btnRepeatingAlarmTime = findViewById(R.id.btn_repeating_time_alarm_time);
         tvRepeatingTimeAlarmTime = findViewById(R.id.tv_repeating_time_alarm_time);
-        edtRepeatingAlarmMessage = findViewById(R.id.edt_repeating_alarm_message);
+        //edtRepeatingAlarmMessage = findViewById(R.id.edt_repeating_alarm_message);
         btnSetRepeatingAlarm = findViewById(R.id.btn_set_repeating_alarm);
-        btnCancelAlarm = findViewById(R.id.btn_cancel_alarm);
+       // btnCancelAlarm = findViewById(R.id.btn_cancel_alarm);
 
         btnOneTimeAlarmDate.setOnClickListener(this);
         btnOneTimeAlarmTime.setOnClickListener(this);
