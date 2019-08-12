@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calOneTimeTime = Calendar.getInstance();
         calRepeatTimeTime = Calendar.getInstance();
 
-        if (TextUtils.isEmpty(alarmPreference.getOneTimeDate())){
+        alarmPreference = new AlarmPreference(this);
+        alarmReceiver = new AlarmReceiver();
+
+        if (!TextUtils.isEmpty(alarmPreference.getOneTimeDate())){
             setOneTimeText();
         }
 
