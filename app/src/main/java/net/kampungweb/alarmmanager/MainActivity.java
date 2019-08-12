@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private AlarmReceiver alarmReceiver;
     private AlarmPreference alarmPreference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +66,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alarmPreference = new AlarmPreference(this);
         alarmReceiver = new AlarmReceiver();
 
-        if (!TextUtils.isEmpty(alarmPreference.getOneTimeDate())){
+        if (!TextUtils.isEmpty(alarmPreference.getOneTimeDate())) {
             setOneTimeText();
         }
 
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        alarmPreference.clear();
+    }
+
+    @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_one_time_alarm_date){
+        if (view.getId() == R.id.btn_one_time_alarm_date) {
             final Calendar currentDate = Calendar.getInstance();
             new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tvOneTimeDate.setText(dateFormat.format(calOneTimeDate.getTime()));
                 }
             }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH)).show();
-        } else if (view.getId() == R.id.btn_one_time_alarm_time){
+        } else if (view.getId() == R.id.btn_one_time_alarm_time) {
             final Calendar currentDate = Calendar.getInstance();
             new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -94,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //Log.v(TAG, "The chosen one " + date.getTime());
                 }
             }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), true).show();
-        } else if (view.getId() == R.id.btn_set_one_time_alarm){
+        } else if (view.getId() == R.id.btn_set_one_time_alarm) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
@@ -109,10 +117,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alarmPreference.getOneTimeDate(),
                     alarmPreference.getOneTimeTime(),
                     alarmPreference.getOneTimeMessage());
+        } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        } else if (view.getId() == R.id.btn_repeating_time_alarm) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+        } else if (view.getId() == R.id.btn_cancel_repeating_alarm) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
         }
+
     }
 
-    private void setOneTimeText(){
+    private void setOneTimeText() {
         tvOneTimeTime.setText(alarmPreference.getOneTimeTime());
         tvOneTimeDate.setText(alarmPreference.getOneTimeDate());
         edtOneTimeMessage.setText(alarmPreference.getOneTimeMessage());

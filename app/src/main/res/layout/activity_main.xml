@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="One Time Alarm"
+        android:text="@string/one_time_alarm"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -28,14 +28,14 @@
             android:id="@+id/btn_one_time_alarm_date"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:text="@string/btn_dots" />
 
         <TextView
             android:id="@+id/tv_one_time_alarm_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="Tanggal Alarm"
+            android:text="@string/alarm_date"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -49,14 +49,14 @@
             android:id="@+id/btn_one_time_alarm_time"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="..." />
+            android:text="@string/btn_dots" />
 
         <TextView
             android:id="@+id/tv_one_time_alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:text="Waktu Alarm"
+            android:text="@string/alarm_time"
             android:textStyle="normal" />
 
     </LinearLayout>
@@ -66,20 +66,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:hint="Pesan Alarm" />
+        android:hint="@string/alarm_message" />
 
     <Button
         android:id="@+id/btn_set_one_time_alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set One Time Alarm" />
+        android:text="@string/set_one_time_alarm" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="Repeating Alarm"
+        android:text="@string/repeating_alarm"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:text="Waktu Alarm" />
+            android:text="@string/alarm_time" />
 
     </LinearLayout>
 
@@ -109,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:hint="Pesan Alarm" />
+        android:hint="@string/alarm_message" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -121,14 +121,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Set Repeating Alarm" />
+            android:text="@string/set_repeating_alarm" />
 
         <Button
             android:id="@+id/btn_cancel_repeating_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel Alarm" />
+            android:text="@string/cancel_alarm" />
 
 
     </LinearLayout>
