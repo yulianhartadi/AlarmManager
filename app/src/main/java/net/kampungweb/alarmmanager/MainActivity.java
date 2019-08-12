@@ -16,14 +16,15 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnOneTimeAlarmDate;
     TextView tvOneTimeAlarmDate;
     Button btnOneTimeAlarmTime;
-    AppCompatTextView tvOneTimeAlarmTime;
-    EditText edtOneTimealarmMessage;
+    TextView tvOneTimeAlarmTime;
+    EditText edtOneTimeAlarmMessage;
     Button btnSetOneTimeAlarm;
 
     Button btnRepeatingAlarmTime;
@@ -46,15 +47,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnOneTimeAlarmDate = findViewById(R.id.btn_one_time_alarm_date);
         tvOneTimeAlarmDate = findViewById(R.id.tv_one_time_alarm_date);
         btnOneTimeAlarmTime = findViewById(R.id.btn_one_time_alarm_time);
-       // tvOneTimeAlarmTime = findViewById(R.id.tv_one_time_alarm_time);
-        edtOneTimealarmMessage = findViewById(R.id.edt_one_time_alarm_message);
+        tvOneTimeAlarmTime = findViewById(R.id.tv_one_time_alarm_time);
+        edtOneTimeAlarmMessage = findViewById(R.id.edt_one_time_alarm_message);
         btnSetOneTimeAlarm = findViewById(R.id.btn_set_one_time_alarm);
 
         btnRepeatingAlarmTime = findViewById(R.id.btn_repeating_time_alarm_time);
         tvRepeatingTimeAlarmTime = findViewById(R.id.tv_repeating_time_alarm_time);
         //edtRepeatingAlarmMessage = findViewById(R.id.edt_repeating_alarm_message);
         btnSetRepeatingAlarm = findViewById(R.id.btn_set_repeating_alarm);
-       // btnCancelAlarm = findViewById(R.id.btn_cancel_alarm);
+        // btnCancelAlarm = findViewById(R.id.btn_cancel_alarm);
 
         btnOneTimeAlarmDate.setOnClickListener(this);
         btnOneTimeAlarmTime.setOnClickListener(this);
@@ -93,16 +94,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.US);
 
                     currentTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     currentTime.set(Calendar.MINUTE, minute);
                     //btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
                     if (tvOneTimeAlarmTime != null) {
                         tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
-                    } else if (true){
-                        Toast.makeText(getApplicationContext(),"how to fix it", Toast.LENGTH_LONG).show();
-                        tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.toString().toCharArray()));
+
+                    } else if (true) {
+                        Toast.makeText(getApplicationContext(), "how to fix it", Toast.LENGTH_LONG).show();
+                        //tvOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
+                        btnOneTimeAlarmTime.setText(timeFormat.format(currentTime.getTime()));
                     }
 
 
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             String oneTimeTime = timeFormat.format((calOneTimeTime.getTime()));
-            String oneTimeMessage = edtOneTimealarmMessage.getText().toString();
+           // String oneTimeMessage = edtOneTimealarmMessage.getText().toString();
 
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
             Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
