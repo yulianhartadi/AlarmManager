@@ -26,7 +26,7 @@ public class AlarmPreference {
         editor = mSharedPreference.edit();
     }
 
-    private void setOneTimeDate(String date){
+    public void setOneTimeDate(String date){
         editor.putString(KEY_ONE_TIME_DATE, date);
         editor.commit();
     }
@@ -35,7 +35,7 @@ public class AlarmPreference {
         return mSharedPreference.getString(KEY_ONE_TIME_DATE, null);
     }
 
-    private void setOneTimeTime(String time){
+    public void setOneTimeTime(String time){
         editor.putString(KEY_ONE_TIME_TIME, time);
         editor.commit();
     }
@@ -44,7 +44,7 @@ public class AlarmPreference {
         return mSharedPreference.getString(KEY_ONE_TIME_TIME, null);
     }
 
-    private void setOneTimeMessage(String message){
+    public void setOneTimeMessage(String message){
         editor.putString(KEY_ONE_TIME_MESSAGE, message);
         editor.commit();
     }
@@ -53,7 +53,7 @@ public class AlarmPreference {
         return mSharedPreference.getString(KEY_ONE_TIME_MESSAGE, null);
     }
 
-    private void setRepeatingTime(String time){
+    public void setRepeatingTime(String time){
         editor.putString(KEY_REPEATING_TIME, time);
         editor.commit();
     }
@@ -62,12 +62,12 @@ public class AlarmPreference {
         return mSharedPreference.getString(KEY_REPEATING_TIME, null);
     }
 
-    private void setRepeatingMessage(String message){
+    public void setRepeatingMessage(String message){
         editor.putString(KEY_REPEATING_MESSAGE, message);
         editor.commit();
     }
 
-    public String getRepeaatingMessage(){
+    public String getRepeatingMessage(){
         return mSharedPreference.getString(KEY_REPEATING_MESSAGE, null);
     }
 
