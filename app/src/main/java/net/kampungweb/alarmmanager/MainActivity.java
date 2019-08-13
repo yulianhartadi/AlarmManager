@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setOneTimeText();
         }
 
+        if (!TextUtils.isEmpty(alarmPreference.getRepeatingTime())){
+            setRepeatingText();
+        }
+
     }
 
     @Override
@@ -113,10 +117,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alarmPreference.getOneTimeMessage());
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            final Calendar currentDate = Calendar.getInstance();
+            new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                    calRepeatTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    calRepeatTimeTime.set(Calendar.MINUTE, minute);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                    tvRepeatingTime.setText(dateFormat.format(calRepeatTimeTime.getTime()));
+                }
+            }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), true).show();
         } else if (view.getId() == R.id.btn_repeating_time_alarm) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            String repeatTimeTime = timeFormat.format(calRepeatTimeTime.getTime());
+            String repeatTimeMessage = edtRepeatingMessage.getText().toString();
+
+            alarmPreference.setRepeatingTime(repeatTimeTime);
+            alarmPreference.setRepeatingMessage(repeatTimeMessage);
+
+            setRepeatingText();
+            alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING,
+                    alarmPreference.getRepeatingTime(), alarmPreference.getRepeatingMessage());
+
         } else if (view.getId() == R.id.btn_cancel_repeating_alarm) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING);
         }
 
     }
@@ -125,5 +151,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvOneTimeTime.setText(alarmPreference.getOneTimeTime());
         tvOneTimeDate.setText(alarmPreference.getOneTimeDate());
         edtOneTimeMessage.setText(alarmPreference.getOneTimeMessage());
+    }
+
+    private void setRepeatingText(){
+        tvRepeatingTime.setText(alarmPreference.getRepeatingTime());
+        edtRepeatingMessage.setText(alarmPreference.getRepeatingMessage());
     }
 }
