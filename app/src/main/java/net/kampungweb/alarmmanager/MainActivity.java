@@ -10,7 +10,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -74,49 +73,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btn_one_time_alarm_date) {
-            final Calendar currentDate = Calendar.getInstance();
-            new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayofMonth) {
-                    calOneTimeDate.set(year, monthOfYear, dayofMonth);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    tvOneTimeDate.setText(dateFormat.format(calOneTimeDate.getTime()));
-                }
-            }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH)).show();
-        } else if (view.getId() == R.id.btn_one_time_alarm_time) {
-            final Calendar currentDate = Calendar.getInstance();
-            new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    calOneTimeTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calOneTimeTime.set(Calendar.MINUTE, minute);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                    tvOneTimeTime.setText(dateFormat.format(calOneTimeTime.getTime()));
-                    //Log.v(TAG, "The chosen one " + date.getTime());
-                }
-            }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), true).show();
-        } else if (view.getId() == R.id.btn_set_one_time_alarm) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-            String oneTimeTime = timeFormat.format(calOneTimeTime.getTime());
-            String oneTimeMessage = edtOneTimeMessage.getText().toString();
+        switch (view.getId()) {
+            case R.id.btn_one_time_alarm_date:
+                final Calendar currentDate = Calendar.getInstance();
+                new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                        calOneTimeDate.set(year, monthOfYear, dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        tvOneTimeDate.setText(dateFormat.format(calOneTimeDate.getTime()));
+                    }
+                }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
+                break;
+            case R.id.btn_one_time_alarm_time:
+                final Calendar currentTime = Calendar.getInstance();
+                new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        calOneTimeTime.set(hourOfDay, minute);
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                        tvOneTimeTime.setText(timeFormat.format(calOneTimeTime.getTime()));
+                    }
+                }, currentTime.get(Calendar.HOUR_OF_DAY), currentTime.get(Calendar.MINUTE), true).show();
+                break;
+            case R.id.btn_set_one_time_alarm:
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String oneTimeDate = dateFormat.format(calOneTimeDate.getTime());
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                String oneTimeTime = timeFormat.format(calOneTimeTime.getTime());
+                String oneTimeMessage = edtOneTimeMessage.getText().toString();
 
-            alarmPreference.setOneTimeDate(oneTimeDate);
-            alarmPreference.setOneTimeTime(oneTimeTime);
-            alarmPreference.setOneTimeMessage(oneTimeMessage);
+                alarmPreference.setOneTimeDate(oneTimeDate);
+                alarmPreference.setOneTimeTime(oneTimeTime);
+                alarmPreference.setOneTimeMessage(oneTimeMessage);
 
-            alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
-                    alarmPreference.getOneTimeDate(),
-                    alarmPreference.getOneTimeTime(),
-                    alarmPreference.getOneTimeMessage());
-        } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-        } else if (view.getId() == R.id.btn_repeating_time_alarm) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-        } else if (view.getId() == R.id.btn_cancel_repeating_alarm) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+                alarmReceiver.setOneTimeAlarm(this, alarmReceiver.TYPE_ONE_TIME,
+                        alarmPreference.getOneTimeDate(),
+                        alarmPreference.getOneTimeTime(),
+                        alarmPreference.getOneTimeMessage());
+                break;
+            case R.id.btn_repeating_time_alarm:
+                break;
         }
 
     }
