@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alarmPreference.getOneTimeMessage());
         } else if (view.getId() == R.id.btn_repeating_time_alarm_time) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
-        } else if (view.getId() == R.id.btn_repeating_time_alarm ) {
+        } else if (view.getId() == R.id.btn_repeating_time_alarm) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
         } else if (view.getId() == R.id.btn_cancel_repeating_alarm) {
             Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
