@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     alarmPreference.getRepeatingTime(), alarmPreference.getRepeatingMessage());
 
         } else if (view.getId() == R.id.btn_cancel_repeating_alarm) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show();
             alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING);
         }
 
